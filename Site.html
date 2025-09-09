@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Поддержка Telegram бота </title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; text-align: center; }
+    h1, h2 { color: #333; }
+    p { font-size: 1.1em; margin-bottom: 20px; }
+    button {
+      background-color: #007bff;
+      border: none;
+      padding: 15px 35px;
+      font-size: 1.2em;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+    button.donate {
+      background-color: #ff6f61;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+    #changelog {
+      text-align: left;
+      margin-top: 50px;
+      border-top: 1px solid #ddd;
+      padding-top: 20px;
+    }
+    #changelog ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Поддержать развитие Telegram бота @debts_newbot</h1>
+  <p>Спасибо, что используете бота! Ваша поддержка помогает нам развиваться и улучшать функциональность.</p>
+  
+  <button class="donate">
+    <a href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">💖 Донат</a>
+  </button>
+
+  <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSf25cPmj_XOJ0w-5ywHh_MlF2yY1WmF4xuYG1s7Vr0N-PM4dw/viewform?usp=header', '_blank')">
+    📬 Обратная связь
+  </button>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <ul>
+      <li><b>v0.2 (09.09.2025)</b> — Добавлено частичное списывание долгов, улучшена статистика</li>
+      <li><b>v0.1 (09.09.2025)</b> — Первоначальный релиз бота, базовый функционал учёта долгов</li>
+    </ul>
+  </section>
+</body>
+</html>
