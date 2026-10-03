@@ -323,8 +323,8 @@ function replaceBetween(source, name, replacement, label) {
   return source.replace(pattern, `$1${replacement}$2`);
 }
 
-function fill(source, name, block, indent, eol, label) {
-  return replaceBetween(source, name, applyEol(`\n${block}\n${indent}`, eol), label);
+function fill(source, name, block, indent, label) {
+  return replaceBetween(source, name, `\n${block}\n${indent}`, label);
 }
 
 /**
@@ -376,17 +376,17 @@ function build() {
   const count = `${releases.length} ${pluralReleases(releases.length)}`;
 
   // --- index.html ---
-  const pageRaw = readFileSync(F.page, "utf8");
-  const pageEol = eolOf(pageRaw);
+  // Работаем с LF, а переводы строк файла восстанавливаются в конце — иначе на
+  // файле с CRLF получалось бы \r\r\n
   const L = "index.html";
+  let html = readFileSync(F.page, "utf8").replaceAll("\r\n", "\n");
 
-  let html = pageRaw;
-  html = fill(html, "latest", renderLatest(releases[0]), "        ", pageEol, L);
-  html = fill(html, "index", renderVersionIndex(releases), "          ", pageEol, L);
+  html = fill(html, "latest", renderLatest(releases[0]), "        ", L);
+  html = fill(html, "index", renderVersionIndex(releases), "          ", L);
   html = replaceBetween(html, "count", count, L);
-  html = fill(html, "releases", releases.map((r, i) => renderRelease(r, i === 0)).join("\n"), "        ", pageEol, L);
-  html = fill(html, "faq", renderFaq(questions), "        ", pageEol, L);
-  html = fill(html, "jsonld", renderJsonLd(site, questions), "  ", pageEol, L);
+  html = fill(html, "releases", releases.map((r, i) => renderRelease(r, i === 0)).join("\n"), "        ", L);
+  html = fill(html, "faq", renderFaq(questions), "        ", L);
+  html = fill(html, "jsonld", renderJsonLd(site, questions), "  ", L);
   html = replaceBetween(
     html,
     "updated",
