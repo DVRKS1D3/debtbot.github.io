@@ -3,29 +3,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Поддержка Telegram бота @debts_newbot — учёт долгов, статистика и удобное управление финансами." />
+
+  <title>Бот @debts_newbot — учёт долгов в Telegram</title>
+  <meta name="description" content="Telegram-бот @debts_newbot для учёта долгов: ввод одной строкой, частичное погашение, сроки возврата, напоминания, 15 валют и статистика. История обновлений и поддержка проекта." />
+  <link rel="canonical" href="https://dvrks1d3.github.io/debtbot.github.io/" />
+
+  <!-- ВАЖНО: при подключении своего домена поменять адрес в site.json, затем
+       здесь (canonical, og:url, og:image, twitter:image) и в privacy.html.
+       Сборка проверит, что адреса совпадают. Подробности — в README. -->
+
   <meta name="theme-color" content="#0ea5e9" />
-  <title>Поддержка бота @debts_newbot</title>
+  <meta name="color-scheme" content="light" />
+
+  <!-- Превью для Telegram и соцсетей -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="debtbot" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:title" content="Учёт долгов в Telegram — @debts_newbot" />
+  <meta property="og:description" content="Ввод одной строкой, частичное погашение, сроки возврата, напоминания и статистика. История обновлений бота и поддержка проекта." />
+  <meta property="og:url" content="https://dvrks1d3.github.io/debtbot.github.io/" />
+  <meta property="og:image" content="https://dvrks1d3.github.io/debtbot.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="@debts_newbot — учёт долгов в Telegram" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Учёт долгов в Telegram — @debts_newbot" />
+  <meta name="twitter:description" content="Ввод одной строкой, частичное погашение, сроки возврата, напоминания и статистика." />
+  <meta name="twitter:image" content="https://dvrks1d3.github.io/debtbot.github.io/assets/og-image.png" />
+
+  <!-- Иконки -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- Подписка на обновления -->
+  <link rel="alternate" type="application/rss+xml" title="Обновления бота @debts_newbot" href="feed.xml" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Разметка для поисковиков собирается из faq.json и site.json -->
+  <!-- build:jsonld:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "@debts_newbot",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Telegram",
+        "inLanguage": "ru",
+        "url": "https://dvrks1d3.github.io/debtbot.github.io/",
+        "description": "Telegram-бот для учёта долгов: частичное погашение, сроки возврата, напоминания и статистика.",
+        "sameAs": [
+          "https://t.me/debts_newbot"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Как записать долг?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Одной строкой в чате с ботом: «Вася 5000 за обед». Можно сразу указать валюту, направление («мне должны» или «я должен»), срок возврата и напоминание."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Можно ли закрыть долг частично?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. В карточке долга есть списание полностью, наполовину («½ 50%») и на свою сумму. Полное списание и половина остатка спрашивают подтверждение, чтобы случайное нажатие ничего не испортило."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как поставить срок возврата?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Допишите дату в строку: «Вася 5000 до 15 сентября». Бот покажет, сколько дней осталось, и пришлёт уведомление, если долг просрочен."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как работают напоминания?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "«напомнить 10 сентября в 20:00», «через 2 часа», «через 3 дня» или дата вида 2027-09-10. Кроме этого есть периодические сводки: их время настраивается, а если бот в назначенный час не работал, сводка догоняется."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Что будет, если я случайно закрою или удалю долг?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ничего страшного. В разделе «🗂 Архив» погашенный долг можно вернуть в работу, а удалённый — восстановить. Последний платёж тоже откатывается кнопкой «↩️ Отменить последний платёж»."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Какие валюты поддерживаются?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "15 валют, среди них ₽, $, €, ₸, ₾, ₴, ₺, £, ¥, Br и ֏. Валюта указывается прямо в строке ввода, а основную можно выбрать при первом запуске и поменять в настройках."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Список долгов не сломается, если записей станет много?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Нет. Список листается стрелками по 12 записей, группируется по должникам с итогами и открывается даже при сотнях долгов."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "В каком часовом поясе считаются даты и напоминания?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "В вашем. Часовой пояс настраивается отдельно для каждого пользователя, поэтому напоминания приходят по вашему местному времени."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как сообщить об ошибке или предложить идею?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Через форму обратной связи — ссылка в блоке «Поддержать проект» и в футере. Обычно отвечаем в течение дня."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- build:jsonld:end -->
+
   <style>
     :root {
+      color-scheme: light;
       --bg: #f8fafc;
       --bg-2: #eff6ff;
       --card: #ffffff;
       --text: #0f172a;
-      --muted: #64748b;
-      --muted-2: #94a3b8;
+      --muted: #475569;
+      --muted-2: #5b6779;
       --border: #e2e8f0;
       --primary: #0ea5e9;
+      --primary-ink: #0369a1;
       --primary-dark: #0284c7;
-      --accent: #ff6b6b;
-      --accent-2: #ff3b5c;
+      --accent: #e11d48;
+      --accent-2: #be123c;
+      --ok: #047857;
+      --ok-bg: #ecfdf5;
+      --ok-border: #a7f3d0;
       --radius-xl: 24px;
-      --radius-lg: 16px;
       --shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.08), 0 8px 20px -8px rgba(15, 23, 42, 0.06);
       --shadow-hover: 0 24px 60px -12px rgba(15, 23, 42, 0.12), 0 12px 24px -8px rgba(15, 23, 42, 0.08);
+      --focus: #0369a1;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,6 +191,30 @@
       max-width: 720px;
       margin: 0 auto;
       padding: 32px 20px 48px;
+    }
+
+    /* Доступность: сразу к обновлениям, минуя витрину */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 10;
+      background: var(--text);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 0 0 12px 0;
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 0; }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 12px;
     }
 
     /* Header */
@@ -75,28 +244,17 @@
       font-size: 18px;
       box-shadow: 0 8px 16px -8px rgba(15,23,42,0.3);
     }
-    .badge-live {
+    .badge-since {
       font-size: 12px;
       font-weight: 600;
-      color: #059669;
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
+      color: var(--ok);
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-border);
       padding: 6px 10px;
       border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .badge-live::before {
-      content: "";
-      width: 7px; height: 7px;
-      background: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 0 4px rgba(16,185,129,0.15);
-      animation: pulse 2s infinite;
     }
 
-    /* Hero Card */
+    /* Hero */
     .hero {
       background: var(--card);
       border: 1px solid var(--border);
@@ -106,7 +264,7 @@
       animation: fadeUp 0.7s ease 0.1s both;
     }
     .hero-inner {
-      padding: 36px 32px 28px;
+      padding: 36px 32px 32px;
       text-align: center;
     }
     .eyebrow {
@@ -115,7 +273,7 @@
       gap: 8px;
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
-      color: #475569;
+      color: var(--muted);
       font-size: 13px;
       font-weight: 600;
       padding: 7px 12px;
@@ -130,7 +288,7 @@
       border-radius: 999px;
       font-size: 11px;
       font-weight: 700;
-      color: var(--primary-dark);
+      color: var(--primary-ink);
     }
     h1 {
       font-family: 'Manrope', sans-serif;
@@ -150,40 +308,9 @@
       color: var(--muted);
       font-size: 16px;
       line-height: 1.6;
-      max-width: 520px;
+      max-width: 540px;
       margin: 0 auto 26px;
     }
-    .bot-handle {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 10px 14px;
-      margin-bottom: 28px;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.2s ease;
-    }
-    .bot-handle:hover {
-      background: white;
-      border-color: #cbd5e1;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px -12px rgba(15,23,42,0.12);
-    }
-    .bot-avatar {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #38bdf8, #6366f1);
-      display: grid; place-items: center;
-      color: white;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-    .bot-handle strong { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
-    .bot-handle small { font-size: 12px; color: var(--muted); font-weight: 500; display: block; margin-top: 1px; }
-    .bot-arrow { color: var(--muted-2); margin-left: 4px; }
 
     /* Actions */
     .actions {
@@ -212,14 +339,24 @@
     }
     .btn:active { transform: translateY(0px) scale(0.98); }
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      background: linear-gradient(135deg, #0369a1 0%, #1e40af 100%);
       color: white;
-      box-shadow: 0 10px 20px -10px rgba(255, 59, 92, 0.6), 0 4px 10px -4px rgba(255, 59, 92, 0.4);
+      box-shadow: 0 10px 20px -10px rgba(30, 64, 175, 0.55), 0 4px 10px -4px rgba(30, 64, 175, 0.4);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 16px 28px -10px rgba(255, 59, 92, 0.55), 0 8px 14px -6px rgba(255, 59, 92, 0.35);
-      filter: brightness(1.02);
+      box-shadow: 0 16px 28px -10px rgba(30, 64, 175, 0.5), 0 8px 14px -6px rgba(30, 64, 175, 0.35);
+      filter: brightness(1.06);
+    }
+    .btn-accent {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+      color: white;
+      box-shadow: 0 10px 20px -10px rgba(190, 18, 60, 0.55), 0 4px 10px -4px rgba(190, 18, 60, 0.4);
+    }
+    .btn-accent:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 28px -10px rgba(190, 18, 60, 0.5), 0 8px 14px -6px rgba(190, 18, 60, 0.35);
+      filter: brightness(1.04);
     }
     .btn-secondary {
       background: white;
@@ -240,69 +377,50 @@
       font-size: 13px;
       flex-shrink: 0;
     }
-    .btn-primary .btn-icon { background: rgba(255,255,255,0.22); }
+    .btn-primary .btn-icon,
+    .btn-accent .btn-icon { background: rgba(255,255,255,0.22); }
     .btn-secondary .btn-icon { background: #f1f5f9; border: 1px solid #e2e8f0; }
 
-    .trust-row {
+    /* Последнее обновление в карточке */
+    .latest {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 18px;
-      flex-wrap: wrap;
-      color: var(--muted-2);
-      font-size: 12.5px;
-      font-weight: 500;
-    }
-    .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
-    .trust-dot { width: 4px; height: 4px; background: #cbd5e1; border-radius: 50%; }
-
-    /* Features */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-top: 16px;
-      padding: 16px;
+      flex-wrap: wrap;
+      padding: 14px 32px;
       background: #f8fafc;
       border-top: 1px solid var(--border);
-      text-align: left;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.2s ease;
     }
-    .feature {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
+    .latest:hover { background: #f1f5f9; }
+    .latest-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ok);
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-border);
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
     }
-    .feature-icon {
-      width: 32px; height: 32px;
-      border-radius: 9px;
-      display: grid; place-items: center;
-      font-size: 14px;
-      background: white;
-      border: 1px solid #e2e8f0;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .feature b { display: block; font-size: 13px; line-height: 1.2; margin-bottom: 3px; letter-spacing: -0.01em; }
-    .feature p { font-size: 12.5px; color: var(--muted); line-height: 1.45; margin: 0; }
+    .latest-title { flex: 1 1 220px; font-size: 13.5px; color: var(--muted); }
+    .latest-title b { color: var(--text); font-weight: 700; }
+    .latest-date { font-size: 12px; font-weight: 600; color: var(--muted); }
 
-    /* Changelog */
-    .changelog {
+    /* Панели разделов */
+    .panel {
       margin-top: 22px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
-      padding: 28px 28px 24px;
-      animation: fadeUp 0.7s ease 0.18s both;
+      padding: 28px;
     }
-    .changelog-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
+    .panel h2,
     .changelog-head h2 {
       font-family: 'Manrope', sans-serif;
       font-size: 18px;
@@ -312,27 +430,137 @@
       align-items: center;
       gap: 10px;
     }
-    .changelog-head h2::before {
-      content: "✦";
+    .title-icon {
       width: 28px; height: 28px;
       display: grid; place-items: center;
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
       border-radius: 8px;
-      font-size: 12px;
-      color: #64748b;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .panel-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin: 8px 0 20px;
+    }
+
+    /* Возможности */
+    .feature-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px 14px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .feature-icon {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      display: grid; place-items: center;
+      font-size: 15px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feature-item b { display: block; font-size: 13.5px; line-height: 1.25; margin-bottom: 3px; letter-spacing: -0.01em; }
+    .feature-item p { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+    /* Как это работает */
+    .steps {
+      list-style: none;
+      counter-reset: step;
+      display: grid;
+      gap: 16px;
+    }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step);
+      width: 28px; height: 28px;
+      flex: 0 0 28px;
+      display: grid; place-items: center;
+      border-radius: 9px;
+      background: var(--text);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .steps b { display: block; font-size: 14px; line-height: 1.3; margin-bottom: 3px; }
+    .steps p { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+    .steps code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 1px 5px;
+      color: var(--text);
+    }
+
+    /* Обновления */
+    .changelog {
+      margin-top: 22px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px 28px 24px;
+    }
+    .changelog-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
     }
     .version-count {
       font-size: 12px;
       font-weight: 700;
-      color: #475569;
+      color: var(--muted);
       background: #f1f5f9;
       border: 1px solid #e2e8f0;
       padding: 6px 10px;
       border-radius: 999px;
       white-space: nowrap;
     }
+    .changelog-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .version-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .chip {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 4px 9px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+    .chip:hover {
+      background: white;
+      border-color: var(--primary-ink);
+      color: var(--primary-ink);
+    }
     .timeline {
+      list-style: none;
       position: relative;
       padding-left: 22px;
     }
@@ -352,6 +580,7 @@
       display: flex;
       gap: 14px;
       align-items: flex-start;
+      scroll-margin-top: 24px;
     }
     .timeline-item:last-child { padding-bottom: 2px; }
     .timeline-dot {
@@ -361,10 +590,10 @@
       width: 14px; height: 14px;
       border-radius: 50%;
       background: white;
-      border: 3px solid #0ea5e9;
+      border: 3px solid var(--primary-dark);
       box-shadow: 0 0 0 4px #e0f2fe;
     }
-    .timeline-item:nth-child(2) .timeline-dot { border-color: #8b5cf6; box-shadow: 0 0 0 4px #ede9fe; }
+    .timeline-item:nth-child(2) .timeline-dot { border-color: #7c3aed; box-shadow: 0 0 0 4px #ede9fe; }
     .timeline-item:nth-child(n+3) .timeline-dot { border-color: #94a3b8; box-shadow: 0 0 0 4px #f1f5f9; }
     .timeline-card {
       flex: 1;
@@ -380,14 +609,21 @@
       transform: translateY(-1px);
       box-shadow: 0 8px 20px -14px rgba(15,23,42,0.1);
     }
+    .timeline-item:target .timeline-card {
+      background: white;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px #e0f2fe;
+    }
     .timeline-top {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
+    .release-heading { margin: 0; font-size: inherit; font-weight: inherit; }
     .ver {
+      display: inline-block;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: -0.02em;
@@ -396,8 +632,11 @@
       border: 1px solid #e2e8f0;
       padding: 3px 8px;
       border-radius: 999px;
+      text-decoration: none;
     }
-    .ver.latest { background: #0ea5e9; color: white; border-color: #0ea5e9; }
+    .ver:hover { border-color: var(--primary-ink); color: var(--primary-ink); }
+    .ver.latest { background: var(--primary-ink); color: white; border-color: var(--primary-ink); }
+    .ver.latest:hover { color: white; border-color: var(--text); background: var(--text); }
     .date {
       font-size: 12px;
       font-weight: 600;
@@ -412,18 +651,115 @@
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #059669;
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
+      color: var(--ok);
+      background: var(--ok-bg);
+      border: 1px solid var(--ok-border);
       padding: 3px 7px;
       border-radius: 999px;
     }
-    .timeline-card p {
-      font-size: 13.5px;
-      color: #475569;
-      line-height: 1.5;
-      margin: 0;
+    .release-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.4;
     }
+    .release-groups { margin-top: 10px; }
+    .release-group + .release-group { margin-top: 12px; }
+    .group-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: var(--muted-2);
+    }
+    .release-group-add .group-title { color: var(--ok); }
+    .release-group-fix .group-title { color: var(--accent-2); }
+    .release-list {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+    }
+    .release-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .release-list li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 8px;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #94a3b8;
+    }
+    .release-group-add .release-list li::before { background: #10b981; }
+    .release-group-fix .release-list li::before { background: #fb7185; }
+
+    /* FAQ */
+    .faq-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0 14px;
+      transition: background 0.2s ease;
+    }
+    .faq-item + .faq-item { margin-top: 8px; }
+    .faq-item[open] { background: white; }
+    .faq-item summary {
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+      padding: 13px 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "+";
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary-ink);
+      flex-shrink: 0;
+    }
+    .faq-item[open] summary::after { content: "–"; }
+    .faq-item p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-bottom: 14px;
+    }
+    .faq-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Поддержка */
+    .support { text-align: center; }
+    .support .panel-sub { max-width: 520px; margin: 8px auto 20px; }
+    .support .actions { max-width: 520px; margin: 0 auto; }
+    .trust-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      color: var(--muted-2);
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .trust-row span { display: inline-flex; align-items: center; gap: 6px; }
+    .trust-dot { width: 4px; height: 4px; background: #cbd5e1; border-radius: 50%; }
 
     footer {
       text-align: center;
@@ -433,23 +769,35 @@
       font-weight: 500;
       animation: fadeIn 0.7s ease 0.25s both;
     }
-    footer a { color: #64748b; text-decoration: none; border-bottom: 1px dashed #cbd5e1; }
+    footer p + p { margin-top: 6px; }
+    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px dashed #cbd5e1; }
     footer a:hover { color: var(--text); border-bottom-color: var(--text); }
+
+    a.inline-link { color: var(--primary-ink); text-decoration: none; border-bottom: 1px solid #bae6fd; }
+    a.inline-link:hover { border-bottom-color: var(--primary-ink); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(0.9); opacity: 0.8; } 100% { transform: scale(1); opacity: 1; } }
+
+    @media (max-width: 720px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
     @media (max-width: 640px) {
       .container { padding: 20px 16px 32px; }
-      .hero-inner { padding: 28px 20px 22px; }
+      .hero-inner { padding: 28px 20px 26px; }
+      .latest { padding: 14px 20px; }
       .actions { grid-template-columns: 1fr; }
-      .features { grid-template-columns: 1fr; gap: 14px; }
+      .panel { padding: 22px 18px; }
       .changelog { padding: 22px 18px 18px; }
-      .timeline-card p { font-size: 13px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 14px; }
+      .release-list li { font-size: 13px; }
+      .changelog-sub { font-size: 13px; }
+      .trust-row { flex-direction: column; gap: 6px; }
+      .trust-dot { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -458,219 +806,557 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#changelog">Перейти к обновлениям</a>
+
   <div class="container">
-    <nav class="top-nav" aria-label="Навигация">
+    <header class="top-nav">
       <div class="logo">
-        <div class="logo-mark">◈</div>
+        <div class="logo-mark" aria-hidden="true">◈</div>
         debtbot
       </div>
-      <div class="badge-live" title="Бот работает">Бот онлайн</div>
-    </nav>
+      <span class="badge-since">С 2025 года</span>
+    </header>
 
-    <main class="hero" role="main">
-      <div class="hero-inner">
-        <div class="eyebrow"><span>NEW</span> Учёт долгов без головной боли</div>
-        <h1>Поддержите развитие <br><span class="accent">Telegram-бота @debts_newbot</span></h1>
-        <p class="subtitle">Спасибо, что пользуетесь ботом! Ваша поддержка помогает добавлять новые функции, улучшать безопасность и делать сервис быстрее.</p>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <p class="eyebrow"><span>БЕСПЛАТНО</span> Учёт долгов без головной боли</p>
+          <h1 id="hero-title">Долги под контролем <br><span class="accent">прямо в Telegram</span></h1>
+          <p class="subtitle">Записывайте долги одной строкой, закрывайте частями, ставьте сроки возврата и напоминания. @debts_newbot держит всё в одном месте и напоминает сам.</p>
 
-        <a class="bot-handle" href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer" aria-label="Открыть бота в Telegram">
-          <div class="bot-avatar">✦</div>
-          <div style="text-align:left">
-            <strong>@debts_newbot</strong>
-            <small>Открыть в Telegram → удобно и быстро</small>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">
+              <span class="btn-icon" aria-hidden="true">✦</span>
+              Открыть бота
+            </a>
+            <a class="btn btn-secondary" href="#changelog">
+              <span class="btn-icon" aria-hidden="true">↓</span>
+              Что нового
+            </a>
           </div>
-          <div class="bot-arrow">↗</div>
+        </div>
+
+        <!-- build:latest:start -->
+        <a class="latest" href="#v0-9">
+          <span class="latest-label">Последнее обновление</span>
+          <span class="latest-title"><b>v0.9</b> — Правильные суммы, архив, подтверждение списания</span>
+          <time class="latest-date" datetime="2026-10-03">03.10.2026</time>
         </a>
+        <!-- build:latest:end -->
+      </section>
+
+      <section class="panel" id="features" aria-labelledby="features-title">
+        <h2 id="features-title"><span class="title-icon" aria-hidden="true">◆</span> Возможности</h2>
+        <p class="panel-sub">Всё это уже работает в боте — без таблиц, заметок и ручных переписок.</p>
+
+        <ul class="feature-grid">
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">💬</span>
+            <div><b>Ввод одной строкой</b><p>«Вася 5000 за обед» — и долг уже в списке.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">💸</span>
+            <div><b>Частичное погашение</b><p>Списание полностью, наполовину или на свою сумму.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">📅</span>
+            <div><b>Сроки возврата</b><p>«до 15 сентября»: бот покажет, сколько дней осталось, и предупредит о просрочке.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🔔</span>
+            <div><b>Напоминания</b><p>По дате, «через 2 часа» и периодические сводки.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">💱</span>
+            <div><b>15 валют</b><p>От ₽ и $ до ₺ и ֏ — валюта указывается в строке ввода.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🗂</span>
+            <div><b>Архив</b><p>Погашенный долг возвращается в работу, удалённый восстанавливается.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">📊</span>
+            <div><b>Статистика и отчёты</b><p>Аналитика по должникам, итоги и экспорт данных.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🕒</span>
+            <div><b>Свой часовой пояс</b><p>Напоминания приходят по вашему местному времени.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">🔒</span>
+            <div><b>Защита данных</b><p>Данные используются только для работы бота.</p></div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="panel" id="how" aria-labelledby="how-title">
+        <h2 id="how-title"><span class="title-icon" aria-hidden="true">◆</span> Как это работает</h2>
+        <p class="panel-sub">Три шага — и долги перестают жить в голове и в переписках.</p>
+
+        <ol class="steps">
+          <li>
+            <div>
+              <b>Откройте бота и нажмите «Старт»</b>
+              <p>При первом запуске бот предложит выбрать основную валюту. Шаг можно пропустить — подставится ₽, а поменять валюту можно позже в настройках.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <b>Запишите долг одной строкой</b>
+              <p><code>Вася 5000 за обед</code> · <code>мне должны 3000</code> · <code>Вася 5000 до 15 сентября</code> · <code>напомнить 10 сентября в 20:00</code></p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <b>Закрывайте и следите</b>
+              <p>Списывайте долг частями, смотрите статистику, а о сроках бот напомнит сам. Если нажали не то — последний платёж отменяется одной кнопкой, а долг возвращается из архива.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="changelog" id="changelog" aria-labelledby="changelog-title">
+        <div class="changelog-head">
+          <h2 id="changelog-title"><span class="title-icon" aria-hidden="true">✦</span> Что нового</h2>
+          <p class="version-count"><!-- build:count:start -->13 обновлений<!-- build:count:end --></p>
+        </div>
+        <p class="changelog-sub">История изменений бота — от первого релиза до текущей версии. Каждую версию можно открыть по прямой ссылке, а обновления удобно читать в <a class="inline-link" href="feed.xml">RSS-ленте</a>.</p>
+
+        <!-- build:index:start -->
+          <nav class="version-index" aria-label="Перейти к версии">
+            <a class="chip" href="#v0-9">v0.9</a>
+            <a class="chip" href="#v0-8">v0.8</a>
+            <a class="chip" href="#v0-7a">v0.7a</a>
+            <a class="chip" href="#v0-7">v0.7</a>
+            <a class="chip" href="#v0-6a">v0.6a</a>
+            <a class="chip" href="#v0-6">v0.6</a>
+            <a class="chip" href="#v0-5">v0.5</a>
+            <a class="chip" href="#v0-4">v0.4</a>
+            <a class="chip" href="#v0-3a">v0.3a</a>
+            <a class="chip" href="#v0-3">v0.3</a>
+            <a class="chip" href="#v0-2a">v0.2a</a>
+            <a class="chip" href="#v0-2">v0.2</a>
+            <a class="chip" href="#v0-1">v0.1</a>
+          </nav>
+          <!-- build:index:end -->
+
+        <ul class="timeline">
+        <!-- build:releases:start -->
+        <li class="timeline-item" id="v0-9">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver latest" href="#v0-9" title="Ссылка на это обновление">v0.9</a>
+              </h3>
+              <time class="date" datetime="2026-10-03">03.10.2026</time>
+              <span class="tag">Последнее</span>
+            </div>
+            <p class="release-title">Правильные суммы, архив, подтверждение списания</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Появился раздел «🗂 Архив» — погашенные и удалённые долги больше не пропадают: погашенный можно вернуть в работу, удалённый — восстановить.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-fix">
+                <h4 class="group-title">Исправлено</h4>
+                <ul class="release-list">
+                  <li>«Вася 5 000 за обед» — это 5 000 ₽, а не 5 ₽, как было раньше.</li>
+                  <li>Пробелы и точки в записи числа понимаются как разделители разрядов («1 000 000,50»), а непонятный ввод вроде «5000 6000» или «1e5» бот честно отвергает вместо того, чтобы записать неверную сумму.</li>
+                  <li>Копейки больше не теряются: 10 рублей 10 копеек показываются как «10.10 ₽».</li>
+                  <li>Даты стали умнее — «напомнить в 10.09» это 10 сентября, а не завтра в 10:00; работают «через 2 часа», «через 3 дня» и даты вида 2027-09-10.</li>
+                  <li>Правка суммы у закрытого долга возвращает его в список.</li>
+                  <li>Список долгов открывается даже при сотнях записей.</li>
+                  <li>Периодическая сводка догоняется, если бот в назначенный час не работал.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Списание половины остатка («½ 50%») теперь спрашивает подтверждение, как и полное.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-8">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-8" title="Ссылка на это обновление">v0.8</a>
+              </h3>
+              <time class="date" datetime="2026-10-01">01.10.2026</time>
+            </div>
+            <p class="release-title">Рабочие напоминания, кнопка «Изменить», /cancel</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Кнопка «✏️ Изменить» теперь есть прямо в карточке долга и работает из списка: имя, сумму, описание, напоминание и срок можно поправить в пару нажатий.</li>
+                  <li>Появилась команда /cancel — прервать любой диалог, если передумали; брошенные вопросы забываются сами через полчаса.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-fix">
+                <h4 class="group-title">Исправлено</h4>
+                <ul class="release-list">
+                  <li>Починили напоминания — теперь они действительно приходят 🔔.</li>
+                  <li>Уведомления по дате («напомнить 10 сентября в 20:00»), периодические сводки и сообщения о просроченных сроках возврата молча падали с ошибкой разметки и не доходили ни до кого.</li>
+                  <li>Имена с апострофом («О'Брайен») больше не ломают сообщения целиком.</li>
+                  <li>Даты вида «10 сентября 2026» читаются буквально, без сдвига на год вперёд.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>При первом запуске основную валюту теперь можно пропустить — подставится ₽, поменять её можно в настройках.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-7a">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-7a" title="Ссылка на это обновление">v0.7a</a>
+              </h3>
+              <time class="date" datetime="2026-09-06">06.09.2026</time>
+            </div>
+            <p class="release-title">Листание списка долгов, честный /remind</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Список долгов теперь листается стрелками ⬅️ ➡️ по 12 штук — большие портфели долгов больше не упираются в лимит сообщений.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Команда /remind шлёт сводку по требованию независимо от переключателя уведомлений и честно различает «долгов нет» и «уведомления выключены».</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-7">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-7" title="Ссылка на это обновление">v0.7</a>
+              </h3>
+              <time class="date" datetime="2026-09-06">06.09.2026</time>
+            </div>
+            <p class="release-title">15 валют, сроки возврата, правка долга</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Валют стало 15: добавлены BYN, UAH, AMD, KGS, UZS, TRY, GBP, CNY, CHF и AED — указываются суффиксом в одной строке (₴ ₺ £ ¥ Br ֏ и другие).</li>
+                  <li>Появились сроки возврата: «Вася 5000 до 15 сентября» — бот покажет, сколько дней осталось, и уведомит, если долг просрочен 🔴.</li>
+                  <li>В карточке долга теперь есть «✏️ Изменить» — можно исправить имя, сумму, описание, напоминание и срок.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Красивые даты в истории платежей.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-6a">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-6a" title="Ссылка на это обновление">v0.6a</a>
+              </h3>
+              <time class="date" datetime="2026-09-06">06.09.2026</time>
+            </div>
+            <p class="release-title">Отмена последнего платежа и подтверждение полного списания</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>В карточке долга появилась кнопка «↩️ Отменить последний платёж» — если ошиблись или нажали случайно, платёж откатывается одним нажатием, и долг снова активен.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>«💯 Полностью» теперь спрашивает подтверждение перед списанием.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-6">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-6" title="Ссылка на это обновление">v0.6</a>
+              </h3>
+              <time class="date" datetime="2026-08-31">31.08.2026</time>
+            </div>
+            <p class="release-title">Личная часовая зона и валюта в статистике</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Личная часовая зона для каждого пользователя — напоминания и даты считаются по вашему времени.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-fix">
+                <h4 class="group-title">Исправлено</h4>
+                <ul class="release-list">
+                  <li>Статистика теперь пересчитывается в нужную валюту.</li>
+                  <li>Сообщения корректно отображаются в Telegram (исправлено форматирование и выбор валюты в мастере настройки).</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-5">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-5" title="Ссылка на это обновление">v0.5</a>
+              </h3>
+              <time class="date" datetime="2026-08-30">30.08.2026</time>
+            </div>
+            <p class="release-title">Напоминания по дате и выбор основной валюты</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Напоминания по дате: добавьте в конец строки «напомнить 10 сентября в 20:00» — бот пришлёт уведомление в нужный момент (даты словами или цифрами, «сегодня/завтра», время по Москве).</li>
+                  <li>При первом запуске бот теперь спрашивает основную валюту (₽ $ € ₸ ₾), её можно поменять в настройках — в ней создаются долги и показывается статистика.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-4">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-4" title="Ссылка на это обновление">v0.4</a>
+              </h3>
+              <time class="date" datetime="2026-08-22">22.08.2026</time>
+            </div>
+            <p class="release-title">Inline-интерфейс, ввод одной строкой, карточки долгов</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Добавление долга одной строкой («Вася 5000 за обед») с валютой и направлением («мне должны» / «я должен»).</li>
+                  <li>Интерактивные карточки долгов со списанием полностью, наполовину или частями, удалением с восстановлением и историей платежей.</li>
+                  <li>Подробная справка /help и настраиваемое время напоминаний.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Список долгов теперь группируется по должникам с итогами.</li>
+                  <li>Главное меню переехало на удобные inline-кнопки.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-3a">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-3a" title="Ссылка на это обновление">v0.3a</a>
+              </h3>
+              <time class="date" datetime="2026-08-21">21.08.2026</time>
+            </div>
+            <p class="release-title">Уведомления и экспорт</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Добавлен функционал уведомлений — корректные форматы, улучшенный вывод в отчётах и экспорте, уведомления о сроках и изменениях долгов.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Улучшение экспорта и отображения сумм.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-3">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-3" title="Ссылка на это обновление">v0.3</a>
+              </h3>
+              <time class="date" datetime="2026-08-21">21.08.2026</time>
+            </div>
+            <p class="release-title">Дизайн лендинга и безопасность</p>
+            <div class="release-groups">
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Обновили дизайн лендинга и улучшили безопасность бота.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-2a">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-2a" title="Ссылка на это обновление">v0.2a</a>
+              </h3>
+              <time class="date" datetime="2025-09-09">09.09.2025</time>
+            </div>
+            <p class="release-title">Безопасность и защита от спама</p>
+            <div class="release-groups">
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Улучшение безопасности бота — защита от спама и более гибкое управление.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-2">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-2" title="Ссылка на это обновление">v0.2</a>
+              </h3>
+              <time class="date" datetime="2025-09-09">09.09.2025</time>
+            </div>
+            <p class="release-title">Частичное списание долгов</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Добавлено частичное списание долгов и улучшена статистика — теперь проще закрывать долг по частям.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <li class="timeline-item" id="v0-1">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver" href="#v0-1" title="Ссылка на это обновление">v0.1</a>
+              </h3>
+              <time class="date" datetime="2025-09-09">09.09.2025</time>
+            </div>
+            <p class="release-title">Первый релиз</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>Первоначальный релиз бота — базовый функционал учёта долгов, создание и учёт задолженностей.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
+        <!-- build:releases:end -->
+        </ul>
+      </section>
+
+      <section class="panel" id="faq" aria-labelledby="faq-title">
+        <h2 id="faq-title"><span class="title-icon" aria-hidden="true">◆</span> Вопросы и ответы</h2>
+        <p class="panel-sub">Коротко о том, что спрашивают чаще всего.</p>
+
+        <!-- build:faq:start -->
+        <details class="faq-item">
+          <summary>Как записать долг?</summary>
+          <p>Одной строкой в чате с ботом: «Вася 5000 за обед». Можно сразу указать валюту, направление («мне должны» или «я должен»), срок возврата и напоминание.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Можно ли закрыть долг частично?</summary>
+          <p>Да. В карточке долга есть списание полностью, наполовину («½ 50%») и на свою сумму. Полное списание и половина остатка спрашивают подтверждение, чтобы случайное нажатие ничего не испортило.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Как поставить срок возврата?</summary>
+          <p>Допишите дату в строку: «Вася 5000 до 15 сентября». Бот покажет, сколько дней осталось, и пришлёт уведомление, если долг просрочен.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Как работают напоминания?</summary>
+          <p>«напомнить 10 сентября в 20:00», «через 2 часа», «через 3 дня» или дата вида 2027-09-10. Кроме этого есть периодические сводки: их время настраивается, а если бот в назначенный час не работал, сводка догоняется.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Что будет, если я случайно закрою или удалю долг?</summary>
+          <p>Ничего страшного. В разделе «🗂 Архив» погашенный долг можно вернуть в работу, а удалённый — восстановить. Последний платёж тоже откатывается кнопкой «↩️ Отменить последний платёж».</p>
+        </details>
+        <details class="faq-item">
+          <summary>Какие валюты поддерживаются?</summary>
+          <p>15 валют, среди них ₽, $, €, ₸, ₾, ₴, ₺, £, ¥, Br и ֏. Валюта указывается прямо в строке ввода, а основную можно выбрать при первом запуске и поменять в настройках.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Список долгов не сломается, если записей станет много?</summary>
+          <p>Нет. Список листается стрелками по 12 записей, группируется по должникам с итогами и открывается даже при сотнях долгов.</p>
+        </details>
+        <details class="faq-item">
+          <summary>В каком часовом поясе считаются даты и напоминания?</summary>
+          <p>В вашем. Часовой пояс настраивается отдельно для каждого пользователя, поэтому напоминания приходят по вашему местному времени.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Как сообщить об ошибке или предложить идею?</summary>
+          <p>Через форму обратной связи — ссылка в блоке «Поддержать проект» и в футере. Обычно отвечаем в течение дня.</p>
+        </details>
+        <!-- build:faq:end -->
+
+        <p class="faq-note">Не нашли ответ? Напишите через <a class="inline-link" href="https://docs.google.com/forms/d/e/1FAIpQLSf25cPmj_XOJ0w-5ywHh_MlF2yY1WmF4xuYG1s7Vr0N-PM4dw/viewform?usp=header" target="_blank" rel="noopener noreferrer">форму обратной связи</a>, а о хранении данных рассказано в <a class="inline-link" href="privacy.html">политике конфиденциальности</a>.</p>
+      </section>
+
+      <section class="panel support" id="support" aria-labelledby="support-title">
+        <h2 id="support-title"><span class="title-icon" aria-hidden="true">♥</span> Поддержать проект</h2>
+        <p class="panel-sub">Бот бесплатный. Поддержка идёт на оплату серверов, развитие бота и потенциальные новые проекты — благодаря ей обновления выходят чаще.</p>
 
         <div class="actions">
-          <a class="btn btn-primary" href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">
-            <span class="btn-icon">♥</span>
-            Донат
+          <a class="btn btn-accent" href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon" aria-hidden="true">♥</span>
+            Поддержать
           </a>
           <a class="btn btn-secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSf25cPmj_XOJ0w-5ywHh_MlF2yY1WmF4xuYG1s7Vr0N-PM4dw/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-            <span class="btn-icon">✉</span>
+            <span class="btn-icon" aria-hidden="true">✉</span>
             Обратная связь
           </a>
         </div>
 
-        <div class="trust-row">
+        <p class="trust-row">
           <span>🔒 Безопасный платёж через ЮMoney</span>
-          <span class="trust-dot"></span>
+          <span class="trust-dot" aria-hidden="true"></span>
           <span>⚡ Ответим на обратную связь в течение дня</span>
-        </div>
-      </div>
-
-      <div class="features" aria-label="Преимущества">
-        <div class="feature">
-          <div class="feature-icon">◐</div>
-          <div><b>Частичное погашение</b><p>Списывайте долг частями — удобно для больших сумм</p></div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">◎</div>
-          <div><b>Статистика и отчёты</b><p>Наглядная аналитика по всем долгам и операциям</p></div>
-        </div>
-        <div class="feature">
-          <div class="feature-icon">⬢</div>
-          <div><b>Безопасность</b><p>Улучшенная защита данных и админ-функции</p></div>
-        </div>
-      </div>
+        </p>
+      </section>
     </main>
 
-    <section class="changelog" id="changelog" aria-labelledby="changelog-title">
-      <div class="changelog-head">
-        <h2 id="changelog-title">Changelog</h2>
-        <span class="version-count">13 обновлений</span>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver latest">v0.9</span>
-              <span class="date">03.10.2026</span>
-              <span class="tag">Latest</span>
-            </div>
-            <p>Суммы наконец считаются правильно 💸: «Вася 5 000 за обед» — это 5 000 ₽, а не 5 ₽, как было раньше. Пробелы и точки в записи числа понимаются как разделители разрядов («1 000 000,50»), а непонятный ввод вроде «5000 6000» или «1e5» бот честно отвергает вместо того, чтобы записать неверную сумму. Копейки больше не теряются: 10 рублей 10 копеек показываются как «10.10 ₽». Даты стали умнее — «напомнить в 10.09» это 10 сентября, а не завтра в 10:00; работают «через 2 часа», «через 3 дня» и даты вида 2027-09-10. Появился раздел «🗂 Архив» — погашенные и удалённые долги больше не пропадают: погашенный можно вернуть в работу, удалённый — восстановить. Списание половины остатка («½ 50%») теперь спрашивает подтверждение, как и полное, а правка суммы у закрытого долга возвращает его в список. Список долгов открывается даже при сотнях записей, а периодическая сводка догоняется, если бот в назначенный час не работал.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.8</span>
-              <span class="date">01.10.2026</span>
-            </div>
-            <p>Починили напоминания — теперь они действительно приходят 🔔. Уведомления по дате («напомнить 10 сентября в 20:00»), периодические сводки и сообщения о просроченных сроках возврата молча падали с ошибкой разметки и не доходили ни до кого. Кнопка «✏️ Изменить» теперь есть прямо в карточке долга и работает из списка: имя, сумму, описание, напоминание и срок можно поправить в пару нажатий. Имена с апострофом («О'Брайен») больше не ломают сообщения целиком. Появилась команда /cancel — прервать любой диалог, если передумали; брошенные вопросы забываются сами через полчаса. При первом запуске основную валюту теперь можно пропустить — подставится ₽, поменять её можно в настройках. Даты вида «10 сентября 2026» читаются буквально, без сдвига на год вперёд.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.7a</span>
-              <span class="date">06.09.2026</span>
-            </div>
-            <p>Надёжность и комфорт: список долгов теперь листается стрелками ⬅️ ➡️ по 12 штук — большие портфели долгов больше не упираются в лимит сообщений. Команда /remind шлёт сводку по требованию независимо от переключателя уведомлений и честно различает «долгов нет» и «уведомления выключены».</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.7</span>
-              <span class="date">06.09.2026</span>
-            </div>
-            <p>Валют стало 15: добавлены BYN, UAH, AMD, KGS, UZS, TRY, GBP, CNY, CHF и AED — указываются суффиксом в одной строке (₴ ₺ £ ¥ Br ֏ и другие). Появились сроки возврата: «Вася 5000 до 15 сентября» — бот покажет, сколько дней осталось, и уведомит, если долг просрочен 🔴. В карточке долга теперь есть «✏️ Изменить» — можно исправить имя, сумму, описание, напоминание и срок. Плюс красивые даты в истории платежей.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.6a</span>
-              <span class="date">06.09.2026</span>
-            </div>
-            <p>Безопаснее при погашении: «💯 Полностью» теперь спрашивает подтверждение перед списанием, а в карточке долга появилась кнопка «↩️ Отменить последний платёж» — если ошиблись или нажали случайно, платёж откатывается одним нажатием, и долг снова активен.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.6</span>
-              <span class="date">31.08.2026</span>
-            </div>
-            <p>Личная часовая зона для каждого пользователя — напоминания и даты считаются по вашему времени. Статистика теперь пересчитывается в нужную валюту, а сообщения корректно отображаются в Telegram (исправлено форматирование и выбор валюты в мастере настройки).</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.5</span>
-              <span class="date">30.08.2026</span>
-            </div>
-            <p>Напоминания по дате: добавьте в конец строки «напомнить 10 сентября в 20:00» — бот пришлёт уведомление в нужный момент (даты словами или цифрами, «сегодня/завтра», время по Москве). При первом запуске бот теперь спрашивает основную валюту (₽ $ € ₸ ₾), её можно поменять в настройках — в ней создаются долги и показывается статистика.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.4</span>
-              <span class="date">22.08.2026</span>
-            </div>
-            <p>Большое обновление интерфейса: добавление долга одной строкой («Вася 5000 за обед») с валютой и направлением («мне должны» / «я должен»), интерактивные карточки долгов со списанием полностью, наполовину или частями, удалением с восстановлением и историей платежей. Список долгов теперь группируется по должникам с итогами, главное меню переехало на удобные inline-кнопки, появилась подробная справка /help и настраиваемое время напоминаний.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.3a</span>
-              <span class="date">21.08.2026</span>
-            </div>
-            <p>Улучшение экспорта и отображения сумм, добавлен функционал уведомлений — корректные форматы, улучшенный вывод в отчётах и экспорте, уведомления о сроках и изменениях долгов.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.3</span>
-              <span class="date">21.08.2026</span>
-            </div>
-            <p>Обновили дизайн лендинга и улучшили безопасность бота.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.2a</span>
-              <span class="date">09.09.2025</span>
-            </div>
-            <p>Улучшение безопасности и админ-функций — расширенные права, защита от спама и более гибкое управление.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.2</span>
-              <span class="date">09.09.2025</span>
-            </div>
-            <p>Добавлено частичное списание долгов и улучшена статистика — теперь проще закрывать долг по частям.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot" aria-hidden="true"></div>
-          <div class="timeline-card">
-            <div class="timeline-top">
-              <span class="ver">v0.1</span>
-              <span class="date">09.09.2025</span>
-            </div>
-            <p>Первоначальный релиз бота — базовый функционал учёта долгов, создание и учёт задолженностей.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer>
-      Сделано с ♥ для пользователей <a href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">@debts_newbot</a> · <a href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">Поддержать проект</a>
+      <p>Сделано с ♥ для пользователей <a href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">@debts_newbot</a> · <a href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">Поддержать проект</a></p>
+      <p><a href="privacy.html">Политика конфиденциальности</a> · <a href="feed.xml">RSS-лента обновлений</a></p>
+      <p>Обновлено <!-- build:updated:start --><time id="last-updated" datetime="2026-10-03">03.10.2026</time><!-- build:updated:end --></p>
     </footer>
   </div>
 </body>

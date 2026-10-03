@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Служебные файлы сборки
+Disallow: /tools/
+Disallow: /releases.json
+Disallow: /faq.json
+Disallow: /site.json
+
+Sitemap: https://dvrks1d3.github.io/debtbot.github.io/sitemap.xml

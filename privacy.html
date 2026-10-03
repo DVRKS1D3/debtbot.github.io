@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Политика конфиденциальности — бот @debts_newbot</title>
+  <meta name="description" content="Какие данные хранит Telegram-бот @debts_newbot, зачем они нужны, кому доступны и как запросить их удаление." />
+  <link rel="canonical" href="https://dvrks1d3.github.io/debtbot.github.io/privacy.html" />
+
+  <meta name="theme-color" content="#0ea5e9" />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8fafc;
+      --bg-2: #eff6ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --muted-2: #5b6779;
+      --border: #e2e8f0;
+      --primary-ink: #0369a1;
+      --shadow: 0 20px 50px -12px rgba(15, 23, 42, 0.08), 0 8px 20px -8px rgba(15, 23, 42, 0.06);
+      --focus: #0369a1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 500px at 15% -10%, #dbeafe 0%, transparent 60%),
+                  radial-gradient(800px 500px at 90% 0%, #ffe4e6 0%, transparent 55%),
+                  linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    a:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 12px;
+    }
+
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-family: 'Manrope', sans-serif;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 36px; height: 36px;
+      display: grid; place-items: center;
+      background: var(--text);
+      color: white;
+      border-radius: 10px;
+      font-size: 18px;
+      box-shadow: 0 8px 16px -8px rgba(15,23,42,0.3);
+    }
+    .back-link {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px dashed #cbd5e1;
+    }
+    .back-link:hover { color: var(--text); border-bottom-color: var(--text); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 32px;
+    }
+
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: clamp(24px, 4vw, 30px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+    .lead {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .updated {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted-2);
+      margin-bottom: 26px;
+    }
+
+    h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 26px 0 8px;
+    }
+    h2:first-of-type { margin-top: 0; }
+
+    p { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+    ul { margin: 0 0 10px; padding-left: 20px; }
+    li { font-size: 14px; color: var(--muted); margin-bottom: 5px; }
+    strong { color: var(--text); font-weight: 700; }
+
+    a.inline-link { color: var(--primary-ink); text-decoration: none; border-bottom: 1px solid #bae6fd; }
+    a.inline-link:hover { border-bottom-color: var(--primary-ink); }
+
+    .callout {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin: 0 0 22px;
+    }
+    .callout p { font-size: 13.5px; margin: 0; color: var(--text); }
+
+    footer {
+      text-align: center;
+      margin-top: 24px;
+      color: var(--muted-2);
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    footer a { color: var(--muted); text-decoration: none; border-bottom: 1px dashed #cbd5e1; }
+    footer a:hover { color: var(--text); border-bottom-color: var(--text); }
+
+    @media (max-width: 640px) {
+      .container { padding: 20px 16px 32px; }
+      .card { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="top-nav">
+      <a class="logo" href="index.html">
+        <span class="logo-mark" aria-hidden="true">◈</span>
+        debtbot
+      </a>
+      <a class="back-link" href="index.html">← На главную</a>
+    </header>
+
+    <main class="card">
+      <h1>Политика конфиденциальности</h1>
+      <p class="lead">Это краткое и честное описание того, какие данные хранит Telegram-бот @debts_newbot, зачем они нужны и как их удалить.</p>
+      <p class="updated">Обновлено 03.10.2026</p>
+
+      <p class="callout"><strong>Коротко:</strong> бот хранит только то, что нужно для учёта долгов. Данные не продаются и не используются для рекламы. Удалить свои данные можно в любой момент — через форму обратной связи.</p>
+
+      <h2>1. Какие данные хранит бот</h2>
+      <ul>
+        <li>идентификатор пользователя в Telegram и имя из профиля — чтобы понимать, чьи это долги;</li>
+        <li>имена должников, которые вы вводите сами;</li>
+        <li>суммы, валюты, описания долгов и историю платежей;</li>
+        <li>сроки возврата, напоминания, часовой пояс, основную валюту и настройки уведомлений.</li>
+      </ul>
+      <p>Бот не запрашивает паспортные данные, номера телефонов, адреса и реквизиты банковских карт.</p>
+
+      <h2>2. Зачем эти данные нужны</h2>
+      <p>Только для работы бота: показать список долгов, посчитать статистику, применить вашу валюту и часовой пояс, вовремя прислать напоминание или сводку.</p>
+      <p>Данные <strong>не используются для рекламы</strong> и не передаются третьим лицам для маркетинга.</p>
+
+      <h2>3. Кому доступны данные</h2>
+      <ul>
+        <li><strong>Вам</strong> — через чат с ботом.</li>
+        <li><strong>Администратору бота</strong> — технический доступ к базе нужен для поддержки и исправления ошибок.</li>
+        <li><strong>Telegram</strong> — как платформа, через которую доставляются сообщения; обработка на стороне Telegram описана в его собственных правилах.</li>
+        <li><strong>ЮMoney</strong> — если вы поддерживаете проект, платёж обрабатывается на стороне ЮMoney, а бот не получает и не хранит данные вашей карты.</li>
+        <li><strong>Google Forms</strong> — если вы заполняете форму обратной связи, ответ приходит через сервис Google.</li>
+      </ul>
+
+      <h2>4. Сколько данные хранятся</h2>
+      <p>Столько, сколько вы пользуетесь ботом. Погашенные и удалённые долги попадают в раздел «🗂 Архив», откуда их можно восстановить, — то есть они не исчезают сразу. Если нужно удалить всё безвозвратно, напишите через форму обратной связи, и данные будут удалены.</p>
+
+      <h2>5. Ваши возможности</h2>
+      <ul>
+        <li>изменить или удалить отдельные долги можно прямо в боте;</li>
+        <li>вернуть погашенный или удалённый долг можно из архива;</li>
+        <li>запросить копию своих данных или их полное удаление — через форму обратной связи.</li>
+      </ul>
+
+      <h2>6. Изменения политики</h2>
+      <p>Если правила изменятся, эта страница обновится, а дата в её начале — тоже. Актуальная версия всегда доступна по адресу этой страницы.</p>
+
+      <h2>7. Связаться</h2>
+      <p>Любые вопросы о данных, включая запрос на удаление: <a class="inline-link" href="https://docs.google.com/forms/d/e/1FAIpQLSf25cPmj_XOJ0w-5ywHh_MlF2yY1WmF4xuYG1s7Vr0N-PM4dw/viewform?usp=header" target="_blank" rel="noopener noreferrer">форма обратной связи</a>.</p>
+    </main>
+
+    <footer>
+      <p>Сделано с ♥ для пользователей <a href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">@debts_newbot</a></p>
+      <p><a href="index.html">Главная</a> · <a href="feed.xml">RSS-лента обновлений</a></p>
+    </footer>
+  </div>
+</body>
+</html>
