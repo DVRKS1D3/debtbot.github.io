@@ -63,7 +63,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #0b1220;
     --bg-2: #0f172a;
     --glow-1: #12314f;
@@ -111,6 +111,58 @@
     --focus: #7dd3fc;
   }
 }
+
+/* Явный выбор тёмной темы. Токены должны совпадать с блоком выше. */
+:root[data-theme="dark"] {
+    --bg: #0b1220;
+  --bg-2: #0f172a;
+  --glow-1: #12314f;
+  --glow-2: #3a1b2c;
+  --glow-3: #0d2b45;
+  --card: #111c2e;
+  --surface-2: #0f1a2b;
+  --surface-3: #1a2739;
+  --elevated: #1c2a40;
+
+  --surface-inverse: #e8eef7;
+  --on-inverse: #0b1220;
+
+  --text: #e8eef7;
+  --muted: #a7b4c6;
+  --muted-2: #8fa0b5;
+
+  --border: #22304a;
+  --border-soft: #1b2740;
+  --border-strong: #33425e;
+
+  --primary: #38bdf8;
+  --link: #7dd3fc;
+  --solid: #7dd3fc;
+  --on-solid: #082f49;
+  --ok: #6ee7b7;
+  --ok-bg: #0b3b2c;
+  --ok-border: #1c6b4f;
+  --accent-ink: #fb7185;
+  --note-bg: #0b2b45;
+  --note-border: #1e5f8a;
+
+  --dot-1: #38bdf8;
+  --dot-2: #a78bfa;
+  --dot-3: #64748b;
+  --ring-1: rgba(56, 189, 248, 0.22);
+  --ring-2: rgba(167, 139, 250, 0.22);
+  --ring-3: rgba(148, 163, 184, 0.18);
+  --target-ring: rgba(56, 189, 248, 0.28);
+
+  --shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5), 0 8px 20px -8px rgba(0, 0, 0, 0.35);
+  --shadow-hover: 0 24px 60px -12px rgba(0, 0, 0, 0.6), 0 12px 24px -8px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 8px 20px -14px rgba(0, 0, 0, 0.5);
+  --logomark-shadow: 0 8px 16px -8px rgba(0, 0, 0, 0.6);
+  --focus: #7dd3fc;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] { color-scheme: light; }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -828,3 +880,32 @@ footer a:hover { color: var(--text); border-bottom-color: var(--text); }
   .skip-link, .actions, .support { display: none; }
   .hero, .panel, .changelog { box-shadow: none; border-color: #cbd5e1; }
 }
+
+/* ------------------------------------------------- переключатель темы --- */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+/* Кнопка появляется только при работающем JavaScript */
+:root.js .theme-toggle { display: inline-flex; }
+.theme-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+.theme-toggle svg { width: 18px; height: 18px; display: none; }
+:root:not([data-theme]) .theme-toggle .icon-system { display: block; }
+:root[data-theme="light"] .theme-toggle .icon-light { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-dark { display: block; }
