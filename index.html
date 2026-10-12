@@ -140,7 +140,7 @@
             "name": "Как сообщить об ошибке или предложить идею?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Через форму обратной связи — ссылка в блоке «Поддержать проект» и в футере. Обычно отвечаем в течение дня."
+              "text": "Через форму обратной связи (ссылка в блоке «Поддержать проект» и в футере). Обычно отвечаем в течение дня."
             }
           }
         ]
@@ -156,7 +156,7 @@
   <script src="assets/theme.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#changelog">Перейти к обновлениям</a>
+  <a class="skip-link" href="#features">Перейти к возможностям</a>
 
   <div class="container">
     <header class="top-nav">
@@ -177,7 +177,7 @@
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
-          <p class="eyebrow"><span>БЕСПЛАТНО</span> Учёт долгов без головной боли</p>
+          <p class="eyebrow"><span>Бесплатно</span> Учёт долгов без головной боли</p>
           <h1 id="hero-title">Долги под контролем <br><span class="accent">прямо в Telegram</span></h1>
           <p class="subtitle">Записывайте долги одной строкой, закрывайте частями, ставьте сроки возврата и напоминания. @debts_newbot держит всё в одном месте и напоминает сам.</p>
 
@@ -416,6 +416,14 @@
             </div>
           </article>
         </li>
+        <li class="timeline-archive">
+          <details class="timeline-details">
+            <summary class="timeline-summary">
+              <span class="timeline-summary-icon" aria-hidden="true">▾</span>
+              <span class="timeline-summary-text">Показать историю всех версий</span>
+              <span class="timeline-summary-badge">ещё 12 обновлений</span>
+            </summary>
+            <ol class="timeline-older" aria-label="Предыдущие версии">
         <li class="timeline-item" id="v0-8">
           <div class="timeline-dot" aria-hidden="true"></div>
           <article class="timeline-card">
@@ -431,13 +439,13 @@
                 <h4 class="group-title">Новое</h4>
                 <ul class="release-list">
                   <li>Кнопка «✏️ Изменить» теперь есть прямо в карточке долга и работает из списка: имя, сумму, описание, напоминание и срок можно поправить в пару нажатий.</li>
-                  <li>Появилась команда /cancel — прервать любой диалог, если передумали; брошенные вопросы забываются сами через полчаса.</li>
+                  <li><b>Появилась команда /cancel:</b> позволяет прервать любой диалог, если передумали; брошенные вопросы забываются сами через полчаса.</li>
                 </ul>
               </div>
               <div class="release-group release-group-fix">
                 <h4 class="group-title">Исправлено</h4>
                 <ul class="release-list">
-                  <li>Починили напоминания — теперь они действительно приходят 🔔.</li>
+                  <li><b>Починили напоминания:</b> теперь они действительно приходят 🔔.</li>
                   <li>Уведомления по дате («напомнить 10 сентября в 20:00»), периодические сводки и сообщения о просроченных сроках возврата молча падали с ошибкой разметки и не доходили ни до кого.</li>
                   <li>Имена с апострофом («О'Брайен») больше не ломают сообщения целиком.</li>
                   <li>Даты вида «10 сентября 2026» читаются буквально, без сдвига на год вперёд.</li>
@@ -669,7 +677,7 @@
               <div class="release-group release-group-change">
                 <h4 class="group-title">Изменения</h4>
                 <ul class="release-list">
-                  <li>Улучшение безопасности бота — защита от спама и более гибкое управление.</li>
+                  <li><b>Улучшение безопасности бота:</b> защита от спама и более гибкое управление.</li>
                 </ul>
               </div>
             </div>
@@ -709,11 +717,14 @@
               <div class="release-group release-group-add">
                 <h4 class="group-title">Новое</h4>
                 <ul class="release-list">
-                  <li>Первоначальный релиз бота — базовый функционал учёта долгов, создание и учёт задолженностей.</li>
+                  <li><b>Первоначальный релиз бота:</b> базовый функционал учёта долгов, создание и учёт задолженностей.</li>
                 </ul>
               </div>
             </div>
           </article>
+        </li>
+            </ol>
+          </details>
         </li>
         <!-- build:releases:end -->
         </ul>
@@ -758,11 +769,32 @@
         </details>
         <details class="faq-item">
           <summary>Как сообщить об ошибке или предложить идею?</summary>
-          <p>Через форму обратной связи — ссылка в блоке «Поддержать проект» и в футере. Обычно отвечаем в течение дня.</p>
+          <p>Через форму обратной связи (ссылка в блоке «Поддержать проект» и в футере). Обычно отвечаем в течение дня.</p>
         </details>
         <!-- build:faq:end -->
 
         <p class="faq-note">Не нашли ответ? Напишите через <a class="inline-link" href="https://docs.google.com/forms/d/e/1FAIpQLSf25cPmj_XOJ0w-5ywHh_MlF2yY1WmF4xuYG1s7Vr0N-PM4dw/viewform?usp=header" target="_blank" rel="noopener noreferrer">форму обратной связи</a>, а о хранении данных рассказано в <a class="inline-link" href="privacy.html">политике конфиденциальности</a>.</p>
+      </section>
+
+      <section class="panel cta-panel" id="get-started" aria-labelledby="cta-title">
+        <div class="cta-inner">
+          <span class="cta-badge" aria-hidden="true">✦ Начните прямо сейчас</span>
+          <h2 id="cta-title" class="cta-heading">Наведите порядок в долгах за одну минуту</h2>
+          <p class="cta-sub">Без таблиц, скачивания приложений и сложной настройки. Бот работает в Telegram прямо сейчас — бесплатно, удобно и конфиденциально.</p>
+          <div class="cta-actions">
+            <a class="btn btn-primary btn-cta" href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">
+              <span class="btn-icon" aria-hidden="true">✦</span>
+              Открыть @debts_newbot в Telegram
+            </a>
+          </div>
+          <div class="cta-features">
+            <span class="cta-feat">⚡ Ввод за 3 секунды</span>
+            <span class="cta-dot" aria-hidden="true"></span>
+            <span class="cta-feat">📱 В чате и Mini App</span>
+            <span class="cta-dot" aria-hidden="true"></span>
+            <span class="cta-feat">🔒 Конфиденциально</span>
+          </div>
+        </div>
       </section>
 
       <section class="panel support" id="support" aria-labelledby="support-title">

@@ -175,6 +175,35 @@ function renderRelease(release, isLatest) {
   ].join("\n");
 }
 
+const INITIAL_RELEASES_SHOWN = 2;
+
+function renderReleases(releases) {
+  const recent = releases.slice(0, INITIAL_RELEASES_SHOWN);
+  const older = releases.slice(INITIAL_RELEASES_SHOWN);
+
+  const recentHtml = recent.map((r, i) => renderRelease(r, i === 0)).join("\n");
+  if (older.length === 0) return recentHtml;
+
+  const olderHtml = older.map((r) => renderRelease(r, false)).join("\n");
+  const badgeText = `ещё ${older.length} ${pluralReleases(older.length)}`;
+
+  return [
+    recentHtml,
+    `        <li class="timeline-archive">`,
+    `          <details class="timeline-details">`,
+    `            <summary class="timeline-summary">`,
+    `              <span class="timeline-summary-icon" aria-hidden="true">▾</span>`,
+    `              <span class="timeline-summary-text">Показать историю всех версий</span>`,
+    `              <span class="timeline-summary-badge">${badgeText}</span>`,
+    `            </summary>`,
+    `            <ol class="timeline-older" aria-label="Предыдущие версии">`,
+    olderHtml,
+    `            </ol>`,
+    `          </details>`,
+    `        </li>`,
+  ].join("\n");
+}
+
 function renderLatest(release) {
   const id = anchorId(release.version);
   return [
@@ -392,7 +421,7 @@ function build() {
   html = fill(html, "latest", renderLatest(releases[0]), "        ", L);
   html = fill(html, "index", renderVersionIndex(releases), "          ", L);
   html = replaceBetween(html, "count", count, L);
-  html = fill(html, "releases", releases.map((r, i) => renderRelease(r, i === 0)).join("\n"), "        ", L);
+  html = fill(html, "releases", renderReleases(releases), "        ", L);
   html = fill(html, "faq", renderFaq(questions), "        ", L);
   html = fill(html, "jsonld", renderJsonLd(site, questions), "  ", L);
   html = replaceBetween(

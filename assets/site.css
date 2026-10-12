@@ -889,6 +889,70 @@ h1 .accent {
 .release-group-add .release-list li::before { background: var(--ok); }
 .release-group-fix .release-list li::before { background: var(--accent-ink); }
 
+/* ---------------------------------------------------- архив версий (спойлер) --- */
+
+.timeline-archive {
+  list-style: none;
+  position: relative;
+  padding-top: 4px;
+}
+.timeline-details {
+  border-radius: 12px;
+}
+.timeline-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  list-style: none;
+}
+.timeline-summary::-webkit-details-marker {
+  display: none;
+}
+.timeline-summary:hover {
+  background: var(--elevated);
+  border-color: var(--primary);
+  color: var(--link);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+.timeline-summary-icon {
+  display: inline-block;
+  font-size: 10px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.timeline-details[open] .timeline-summary-icon {
+  transform: rotate(180deg);
+}
+.timeline-summary-text {
+  font-weight: 700;
+}
+.timeline-summary-badge {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface-3);
+  padding: 2px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+}
+.timeline-older {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+}
+
 /* ------------------------------------------------------------------ FAQ --- */
 
 .faq-item {
@@ -931,6 +995,77 @@ h1 .accent {
   margin-top: 16px;
   font-size: 13px;
   color: var(--muted);
+}
+
+/* ----------------------------------------------------------- CTA секция --- */
+
+.cta-panel {
+  background: linear-gradient(180deg, var(--card) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  padding: 38px 24px;
+}
+.cta-inner {
+  max-width: 540px;
+  margin: 0 auto;
+}
+.cta-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--link);
+  background: var(--glow-1);
+  border: 1px solid var(--note-border);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.cta-heading {
+  margin: 0 0 10px;
+  font-size: clamp(22px, 3.8vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+.cta-sub {
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.btn-cta {
+  padding: 13px 26px;
+  font-size: 15.5px;
+  font-weight: 700;
+}
+.cta-features {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted-2);
+  font-weight: 600;
+}
+.cta-feat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.cta-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-strong);
 }
 
 /* ----------------------------------------------------------- поддержка --- */
@@ -1039,6 +1174,8 @@ footer a:hover { color: var(--text); border-bottom-color: var(--text); }
   .feature-grid { grid-template-columns: 1fr; gap: 14px; }
   .release-list li { font-size: 13px; }
   .changelog-sub { font-size: 13px; }
+  .cta-panel { padding: 24px 18px; }
+  .cta-features { gap: 8px; font-size: 12px; }
   .trust-row { flex-direction: column; gap: 6px; }
   .trust-dot { display: none; }
   .privacy-card { padding: 22px 18px; }
@@ -1050,7 +1187,7 @@ footer a:hover { color: var(--text); border-bottom-color: var(--text); }
 
 @media print {
   body { background: #fff; }
-  .skip-link, .actions, .support { display: none; }
+  .skip-link, .actions, .support, .cta-panel { display: none; }
   .hero, .panel, .changelog { box-shadow: none; border-color: #cbd5e1; }
 }
 

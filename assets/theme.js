@@ -58,12 +58,29 @@
     return MODES[(index + 1) % MODES.length];
   }
 
+  function checkHashDetails() {
+    if (!location.hash) return;
+    try {
+      var target = document.querySelector(location.hash);
+      if (target) {
+        var details = target.closest("details");
+        if (details && !details.open) {
+          details.open = true;
+          target.scrollIntoView();
+        }
+      }
+    } catch (e) {}
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     button = document.querySelector(".theme-toggle");
-    if (!button) return;
-    refreshButton();
-    button.addEventListener("click", function () {
-      apply(next());
-    });
+    if (button) {
+      refreshButton();
+      button.addEventListener("click", function () {
+        apply(next());
+      });
+    }
+    checkHashDetails();
+    window.addEventListener("hashchange", checkHashDetails);
   });
 })();
