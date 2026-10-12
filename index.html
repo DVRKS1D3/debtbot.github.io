@@ -43,7 +43,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Разметка для поисковиков собирается из faq.json и site.json -->
   <!-- build:jsonld:start -->
@@ -191,6 +191,42 @@
               Что нового
             </a>
           </div>
+
+          <div class="chat-mockup" aria-label="Пример работы бота в Telegram">
+            <div class="chat-header">
+              <div class="chat-avatar" aria-hidden="true">◈</div>
+              <div class="chat-info">
+                <span class="chat-name">@debts_newbot</span>
+                <span class="chat-status">бот • учёт долгов</span>
+              </div>
+              <span class="chat-badge">Пример</span>
+            </div>
+            <div class="chat-body">
+              <div class="chat-bubble chat-bubble-user">
+                <p class="chat-text">Вася 5000 за обед</p>
+                <span class="chat-time">14:20 <span class="chat-check" aria-hidden="true">✓✓</span></span>
+              </div>
+              <div class="chat-bubble chat-bubble-bot">
+                <div class="chat-bot-header">
+                  <span class="chat-bot-icon" aria-hidden="true">✅</span>
+                  <b>Записан долг</b>
+                </div>
+                <div class="chat-debt-details">
+                  <div class="chat-detail-row"><span>Кому:</span> <b>Вася</b></div>
+                  <div class="chat-detail-row"><span>Сумма:</span> <b>5 000 ₽</b></div>
+                  <div class="chat-detail-row"><span>Заметка:</span> <span>за обед</span></div>
+                  <div class="chat-detail-row chat-detail-due"><span>Срок:</span> <span>до 15 сентября</span></div>
+                </div>
+                <div class="chat-actions">
+                  <span class="chat-btn">💸 Списать 5 000 ₽</span>
+                  <span class="chat-btn">½ Списать 50%</span>
+                  <span class="chat-btn">📅 Поставить срок</span>
+                  <span class="chat-btn chat-btn-app">📱 В приложении</span>
+                </div>
+                <span class="chat-time">14:20</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- build:latest:start -->
@@ -210,6 +246,10 @@
           <li class="feature-item">
             <span class="feature-icon" aria-hidden="true">💬</span>
             <div><b>Ввод одной строкой</b><p>«Вася 5000 за обед» — и долг уже в списке.</p></div>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon" aria-hidden="true">📱</span>
+            <div><b>Встроенное Mini App</b><p>Наглядный интерфейс со списками, фильтрами и дедлайнами прямо в Telegram.</p></div>
           </li>
           <li class="feature-item">
             <span class="feature-icon" aria-hidden="true">💸</span>
@@ -316,9 +356,9 @@
                 <h4 class="group-title">Новое</h4>
                 <ul class="release-list">
                   <li>В приложении теперь можно учитывать не только входящие долги («Мне должны»), но и свои обязательства («Я должен») — с удобным переключателем и цветовыми бейджами.</li>
-                  <li>Фильтр по направлениям в приложении: можно просматривать все записи сразу либо отфильтровать только входящие или исходящие долги.</li>
-                  <li>Сроки возврата в приложении: при создании или изменении долга можно указать дату дедлайна. Карточка сразу подскажет, сколько дней осталось, напомнит о сроке «сегодня» или покажет статус просрочки.</li>
-                  <li>Нативная интеграция с Telegram: приложение использует системную кнопку «Назад» для закрытия окон, главную кнопку в нижней панели и нативный диалог подтверждения при удалении записи.</li>
+                  <li><b>Фильтр по направлениям в приложении:</b> можно просматривать все записи сразу либо отфильтровать только входящие или исходящие долги.</li>
+                  <li><b>Сроки возврата в приложении:</b> при создании или изменении долга можно указать дату дедлайна. Карточка сразу подскажет, сколько дней осталось, напомнит о сроке «сегодня» или покажет статус просрочки.</li>
+                  <li><b>Нативная интеграция с Telegram:</b> приложение использует системную кнопку «Назад» для закрытия окон, главную кнопку в нижней панели и нативный диалог подтверждения при удалении записи.</li>
                 </ul>
               </div>
               <div class="release-group release-group-fix">
@@ -331,7 +371,7 @@
               <div class="release-group release-group-change">
                 <h4 class="group-title">Изменения</h4>
                 <ul class="release-list">
-                  <li>Блок общей статистики в приложении стал нагляднее: суммы теперь разделены на то, что должны вам, и то, что предстоит отдать.</li>
+                  <li><b>Блок общей статистики в приложении стал нагляднее:</b> суммы теперь разделены на то, что должны вам, и то, что предстоит отдать.</li>
                   <li>Оформление и шапка приложения автоматически адаптируются к переключению светлой и тёмной темы в Telegram.</li>
                 </ul>
               </div>
@@ -360,7 +400,7 @@
                 <ul class="release-list">
                   <li>«Вася 5 000 за обед» — это 5 000 ₽, а не 5 ₽, как было раньше.</li>
                   <li>Пробелы и точки в записи числа понимаются как разделители разрядов («1 000 000,50»), а непонятный ввод вроде «5000 6000» или «1e5» бот честно отвергает вместо того, чтобы записать неверную сумму.</li>
-                  <li>Копейки больше не теряются: 10 рублей 10 копеек показываются как «10.10 ₽».</li>
+                  <li><b>Копейки больше не теряются:</b> 10 рублей 10 копеек показываются как «10.10 ₽».</li>
                   <li>Даты стали умнее — «напомнить в 10.09» это 10 сентября, а не завтра в 10:00; работают «через 2 часа», «через 3 дня» и даты вида 2027-09-10.</li>
                   <li>Правка суммы у закрытого долга возвращает его в список.</li>
                   <li>Список долгов открывается даже при сотнях записей.</li>
@@ -452,8 +492,8 @@
               <div class="release-group release-group-add">
                 <h4 class="group-title">Новое</h4>
                 <ul class="release-list">
-                  <li>Валют стало 15: добавлены BYN, UAH, AMD, KGS, UZS, TRY, GBP, CNY, CHF и AED — указываются суффиксом в одной строке (₴ ₺ £ ¥ Br ֏ и другие).</li>
-                  <li>Появились сроки возврата: «Вася 5000 до 15 сентября» — бот покажет, сколько дней осталось, и уведомит, если долг просрочен 🔴.</li>
+                  <li><b>Валют стало 15:</b> добавлены BYN, UAH, AMD, KGS, UZS, TRY, GBP, CNY, CHF и AED — указываются суффиксом в одной строке (₴ ₺ £ ¥ Br ֏ и другие).</li>
+                  <li><b>Появились сроки возврата:</b> «Вася 5000 до 15 сентября» — бот покажет, сколько дней осталось, и уведомит, если долг просрочен 🔴.</li>
                   <li>В карточке долга теперь есть «✏️ Изменить» — можно исправить имя, сумму, описание, напоминание и срок.</li>
                 </ul>
               </div>
@@ -533,7 +573,7 @@
               <div class="release-group release-group-add">
                 <h4 class="group-title">Новое</h4>
                 <ul class="release-list">
-                  <li>Напоминания по дате: добавьте в конец строки «напомнить 10 сентября в 20:00» — бот пришлёт уведомление в нужный момент (даты словами или цифрами, «сегодня/завтра», время по Москве).</li>
+                  <li><b>Напоминания по дате:</b> добавьте в конец строки «напомнить 10 сентября в 20:00» — бот пришлёт уведомление в нужный момент (даты словами или цифрами, «сегодня/завтра», время по Москве).</li>
                   <li>При первом запуске бот теперь спрашивает основную валюту (₽ $ € ₸ ₾), её можно поменять в настройках — в ней создаются долги и показывается статистика.</li>
                 </ul>
               </div>

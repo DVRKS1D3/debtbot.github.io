@@ -5,13 +5,15 @@
 
 :root {
   color-scheme: light dark;
+  background-color: var(--bg);
+  color: var(--text);
 
   /* Фон и поверхности */
   --bg: #f8fafc;
   --bg-2: #eff6ff;
-  --glow-1: #dbeafe;
-  --glow-2: #ffe4e6;
-  --glow-3: #e0f2fe;
+  --glow-1: #e0f2fe;
+  --glow-2: #f1f5f9;
+  --glow-3: #e2e8f0;
   --card: #ffffff;
   --surface-2: #f8fafc;
   --surface-3: #f1f5f9;
@@ -64,11 +66,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    background-color: var(--bg);
+    color: var(--text);
     --bg: #0b1220;
     --bg-2: #0f172a;
-    --glow-1: #12314f;
-    --glow-2: #3a1b2c;
-    --glow-3: #0d2b45;
+    --glow-1: #11253e;
+    --glow-2: #162033;
+    --glow-3: #0d1e30;
     --card: #111c2e;
     --surface-2: #0f1a2b;
     --surface-3: #1a2739;
@@ -114,11 +119,14 @@
 
 /* Явный выбор тёмной темы. Токены должны совпадать с блоком выше. */
 :root[data-theme="dark"] {
-    --bg: #0b1220;
+  color-scheme: dark;
+  background-color: var(--bg);
+  color: var(--text);
+  --bg: #0b1220;
   --bg-2: #0f172a;
-  --glow-1: #12314f;
-  --glow-2: #3a1b2c;
-  --glow-3: #0d2b45;
+  --glow-1: #11253e;
+  --glow-2: #162033;
+  --glow-3: #0d1e30;
   --card: #111c2e;
   --surface-2: #0f1a2b;
   --surface-3: #1a2739;
@@ -164,10 +172,15 @@
 
 :root[data-theme="light"] { color-scheme: light; }
 
+html {
+  background-color: var(--bg);
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: 'Manrope', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background-color: var(--bg);
   background: radial-gradient(900px 500px at 15% -10%, var(--glow-1) 0%, transparent 60%),
               radial-gradient(800px 500px at 90% 0%, var(--glow-2) 0%, transparent 55%),
               radial-gradient(700px 400px at 50% 100%, var(--glow-3) 0%, transparent 50%),
@@ -291,23 +304,23 @@ a.inline-link:hover { border-bottom-color: var(--link); }
 }
 .btn:active { transform: translateY(0) scale(0.98); }
 .btn-primary {
-  background: linear-gradient(135deg, #0369a1 0%, #1e40af 100%);
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
   color: #ffffff;
-  box-shadow: 0 10px 20px -10px rgba(30, 64, 175, 0.55), 0 4px 10px -4px rgba(30, 64, 175, 0.4);
+  box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.25), 0 2px 6px -2px rgba(15, 23, 42, 0.15);
 }
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 28px -10px rgba(30, 64, 175, 0.5), 0 8px 14px -6px rgba(30, 64, 175, 0.35);
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.3), 0 4px 10px -3px rgba(15, 23, 42, 0.2);
   filter: brightness(1.06);
 }
 .btn-accent {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
   color: #ffffff;
-  box-shadow: 0 10px 20px -10px rgba(190, 18, 60, 0.55), 0 4px 10px -4px rgba(190, 18, 60, 0.4);
+  box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.25), 0 2px 6px -2px rgba(15, 23, 42, 0.15);
 }
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 28px -10px rgba(190, 18, 60, 0.5), 0 8px 14px -6px rgba(190, 18, 60, 0.35);
+  box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.3), 0 4px 10px -3px rgba(15, 23, 42, 0.2);
   filter: brightness(1.04);
 }
 .btn-secondary {
@@ -371,17 +384,14 @@ a.inline-link:hover { border-bottom-color: var(--link); }
 }
 h1 {
   font-family: 'Manrope', sans-serif;
-  font-size: clamp(26px, 4.5vw, 34px);
+  font-size: clamp(28px, 4.8vw, 36px);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.03em;
   margin-bottom: 12px;
 }
 h1 .accent {
-  background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 55%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary);
 }
 .subtitle {
   color: var(--muted);
@@ -389,6 +399,160 @@ h1 .accent {
   line-height: 1.6;
   max-width: 540px;
   margin: 0 auto 26px;
+}
+
+/* макет чата Telegram */
+.chat-mockup {
+  margin: 30px auto 0;
+  max-width: 480px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  text-align: left;
+}
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--surface-3);
+  border-bottom: 1px solid var(--border-soft);
+}
+.chat-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--surface-inverse);
+  color: var(--on-inverse);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.chat-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.chat-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.chat-status {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.2;
+}
+.chat-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--link);
+  background: var(--note-bg);
+  border: 1px solid var(--note-border);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+.chat-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-bubble {
+  max-width: 88%;
+  border-radius: 14px;
+  padding: 10px 12px;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.chat-bubble-user {
+  align-self: flex-end;
+  background: var(--note-bg);
+  color: var(--text);
+  border-bottom-right-radius: 4px;
+}
+.chat-text {
+  font-weight: 600;
+  margin: 0;
+}
+.chat-time {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  text-align: right;
+  margin-top: 4px;
+}
+.chat-check {
+  color: var(--link);
+  font-weight: 700;
+}
+.chat-bubble-bot {
+  align-self: flex-start;
+  background: var(--card);
+  color: var(--text);
+  border-bottom-left-radius: 4px;
+}
+.chat-bot-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+.chat-bot-icon {
+  font-size: 14px;
+}
+.chat-debt-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+}
+.chat-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.chat-detail-row span:first-child {
+  color: var(--muted);
+}
+.chat-detail-due {
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.chat-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-soft);
+}
+.chat-btn {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: center;
+  padding: 6px 8px;
+  background: var(--surface-3);
+  border-radius: 8px;
+  color: var(--text);
+  cursor: default;
+  user-select: none;
+}
+.chat-btn-app {
+  background: var(--note-bg);
+  color: var(--link);
+  font-weight: 700;
 }
 
 /* тизер последнего обновления */
@@ -434,7 +598,7 @@ h1 .accent {
 .panel h2,
 .changelog-head h2 {
   font-family: 'Manrope', sans-serif;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.02em;
   display: flex;
@@ -558,6 +722,15 @@ h1 .accent {
   gap: 6px;
   margin-bottom: 22px;
 }
+@media (max-width: 640px) {
+  .version-index {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+}
 .chip {
   font-size: 12px;
   font-weight: 700;
@@ -636,10 +809,10 @@ h1 .accent {
   flex-wrap: wrap;
   margin-bottom: 8px;
 }
-.release-heading { margin: 0; font-size: inherit; font-weight: inherit; }
+.release-heading { margin: 0; font-size: 16px; font-weight: 800; }
 .ver {
   display: inline-block;
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text);
@@ -673,11 +846,11 @@ h1 .accent {
   border-radius: 999px;
 }
 .release-title {
-  font-size: 14.5px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 .release-groups { margin-top: 10px; }
 .release-group + .release-group { margin-top: 12px; }
@@ -823,7 +996,7 @@ footer a:hover { color: var(--text); border-bottom-color: var(--text); }
 }
 .privacy-card h2 {
   font-family: 'Manrope', sans-serif;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.02em;
   margin: 26px 0 8px;

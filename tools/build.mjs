@@ -129,7 +129,15 @@ function renderGroups(groups) {
       const title = KIND_TITLES[group.kind];
       if (!title) throw new Error(`Неизвестный тип изменений: ${group.kind}`);
       const items = group.items
-        .map((item) => `                  <li>${escapeHtml(item)}</li>`)
+        .map((item) => {
+          const colonIdx = item.indexOf(": ");
+          if (colonIdx > 0 && colonIdx < 50) {
+            const prefix = item.slice(0, colonIdx);
+            const rest = item.slice(colonIdx + 2);
+            return `                  <li><b>${escapeHtml(prefix)}:</b> ${escapeHtml(rest)}</li>`;
+          }
+          return `                  <li>${escapeHtml(item)}</li>`;
+        })
         .join("\n");
       return [
         `              <div class="release-group release-group-${group.kind}">`,
