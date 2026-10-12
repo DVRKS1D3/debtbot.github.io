@@ -194,10 +194,10 @@
         </div>
 
         <!-- build:latest:start -->
-        <a class="latest" href="#v0-9">
+        <a class="latest" href="#v0-9-1">
           <span class="latest-label">Последнее обновление</span>
-          <span class="latest-title"><b>v0.9</b> — Правильные суммы, архив, подтверждение списания</span>
-          <time class="latest-date" datetime="2026-10-03">03.10.2026</time>
+          <span class="latest-title"><b>v0.9.1</b> — Направления и дедлайны в приложении, нативные кнопки Telegram</span>
+          <time class="latest-date" datetime="2026-10-12">12.10.2026</time>
         </a>
         <!-- build:latest:end -->
       </section>
@@ -275,12 +275,13 @@
       <section class="changelog" id="changelog" aria-labelledby="changelog-title">
         <div class="changelog-head">
           <h2 id="changelog-title"><span class="title-icon" aria-hidden="true">✦</span> Что нового</h2>
-          <p class="version-count"><!-- build:count:start -->13 обновлений<!-- build:count:end --></p>
+          <p class="version-count"><!-- build:count:start -->14 обновлений<!-- build:count:end --></p>
         </div>
         <p class="changelog-sub">История изменений бота — от первого релиза до текущей версии. Каждую версию можно открыть по прямой ссылке, а обновления удобно читать в <a class="inline-link" href="feed.xml">RSS-ленте</a>.</p>
 
         <!-- build:index:start -->
           <nav class="version-index" aria-label="Перейти к версии">
+            <a class="chip" href="#v0-9-1">v0.9.1</a>
             <a class="chip" href="#v0-9">v0.9</a>
             <a class="chip" href="#v0-8">v0.8</a>
             <a class="chip" href="#v0-7a">v0.7a</a>
@@ -299,15 +300,52 @@
 
         <ul class="timeline">
         <!-- build:releases:start -->
+        <li class="timeline-item" id="v0-9-1">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver latest" href="#v0-9-1" title="Ссылка на это обновление">v0.9.1</a>
+              </h3>
+              <time class="date" datetime="2026-10-12">12.10.2026</time>
+              <span class="tag">Последнее</span>
+            </div>
+            <p class="release-title">Направления и дедлайны в приложении, нативные кнопки Telegram</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li>В приложении теперь можно учитывать не только входящие долги («Мне должны»), но и свои обязательства («Я должен») — с удобным переключателем и цветовыми бейджами.</li>
+                  <li>Фильтр по направлениям в приложении: можно просматривать все записи сразу либо отфильтровать только входящие или исходящие долги.</li>
+                  <li>Сроки возврата в приложении: при создании или изменении долга можно указать дату дедлайна. Карточка сразу подскажет, сколько дней осталось, напомнит о сроке «сегодня» или покажет статус просрочки.</li>
+                  <li>Нативная интеграция с Telegram: приложение использует системную кнопку «Назад» для закрытия окон, главную кнопку в нижней панели и нативный диалог подтверждения при удалении записи.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-fix">
+                <h4 class="group-title">Исправлено</h4>
+                <ul class="release-list">
+                  <li>В выгрузке отчёта в CSV итоговые суммы теперь разделены по направлениям: отдельно «ИТОГО МНЕ ДОЛЖНЫ» и «ИТОГО Я ДОЛЖЕН».</li>
+                  <li>Кнопки меню в чате бота больше не зависают со значком загрузки при повторных или быстрых нажатиях.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li>Блок общей статистики в приложении стал нагляднее: суммы теперь разделены на то, что должны вам, и то, что предстоит отдать.</li>
+                  <li>Оформление и шапка приложения автоматически адаптируются к переключению светлой и тёмной темы в Telegram.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
         <li class="timeline-item" id="v0-9">
           <div class="timeline-dot" aria-hidden="true"></div>
           <article class="timeline-card">
             <div class="timeline-top">
               <h3 class="release-heading">
-                <a class="ver latest" href="#v0-9" title="Ссылка на это обновление">v0.9</a>
+                <a class="ver" href="#v0-9" title="Ссылка на это обновление">v0.9</a>
               </h3>
               <time class="date" datetime="2026-10-03">03.10.2026</time>
-              <span class="tag">Последнее</span>
             </div>
             <p class="release-title">Правильные суммы, архив, подтверждение списания</p>
             <div class="release-groups">
@@ -713,7 +751,7 @@
     <footer>
       <p>Сделано с ♥ для пользователей <a href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">@debts_newbot</a> · <a href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">Поддержать проект</a></p>
       <p><a href="privacy.html">Политика конфиденциальности</a> · <a href="feed.xml">RSS-лента обновлений</a></p>
-      <p>Обновлено <!-- build:updated:start --><time id="last-updated" datetime="2026-10-03">03.10.2026</time><!-- build:updated:end --></p>
+      <p>Обновлено <!-- build:updated:start --><time id="last-updated" datetime="2026-10-12">12.10.2026</time><!-- build:updated:end --></p>
     </footer>
   </div>
 </body>
