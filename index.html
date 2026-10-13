@@ -230,10 +230,10 @@
         </div>
 
         <!-- build:latest:start -->
-        <a class="latest" href="#v0-9-1">
+        <a class="latest" href="#v0-9-2">
           <span class="latest-label">Последнее обновление</span>
-          <span class="latest-title"><b>v0.9.1</b> — Направления и дедлайны в приложении, нативные кнопки Telegram</span>
-          <time class="latest-date" datetime="2026-10-12">12.10.2026</time>
+          <span class="latest-title"><b>v0.9.2</b> — Редизайн Mini App, безопасное списание с отменой, защита данных</span>
+          <time class="latest-date" datetime="2026-10-13">13.10.2026</time>
         </a>
         <!-- build:latest:end -->
       </section>
@@ -315,12 +315,13 @@
       <section class="changelog" id="changelog" aria-labelledby="changelog-title">
         <div class="changelog-head">
           <h2 id="changelog-title"><span class="title-icon" aria-hidden="true">✦</span> Что нового</h2>
-          <p class="version-count"><!-- build:count:start -->14 обновлений<!-- build:count:end --></p>
+          <p class="version-count"><!-- build:count:start -->15 обновлений<!-- build:count:end --></p>
         </div>
         <p class="changelog-sub">История изменений бота — от первого релиза до текущей версии. Каждую версию можно открыть по прямой ссылке, а обновления удобно читать в <a class="inline-link" href="feed.xml">RSS-ленте</a>.</p>
 
         <!-- build:index:start -->
           <nav class="version-index" aria-label="Перейти к версии">
+            <a class="chip" href="#v0-9-2">v0.9.2</a>
             <a class="chip" href="#v0-9-1">v0.9.1</a>
             <a class="chip" href="#v0-9">v0.9</a>
             <a class="chip" href="#v0-8">v0.8</a>
@@ -340,15 +341,45 @@
 
         <ul class="timeline">
         <!-- build:releases:start -->
+        <li class="timeline-item" id="v0-9-2">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <article class="timeline-card">
+            <div class="timeline-top">
+              <h3 class="release-heading">
+                <a class="ver latest" href="#v0-9-2" title="Ссылка на это обновление">v0.9.2</a>
+              </h3>
+              <time class="date" datetime="2026-10-13">13.10.2026</time>
+              <span class="tag">Последнее</span>
+            </div>
+            <p class="release-title">Редизайн Mini App, безопасное списание с отменой, защита данных</p>
+            <div class="release-groups">
+              <div class="release-group release-group-add">
+                <h4 class="group-title">Новое</h4>
+                <ul class="release-list">
+                  <li><b>Безопасное списание долга:</b> при полном погашении приложение теперь запрашивает подтверждение с точной суммой и именем должника, исключая случайные списания.</li>
+                  <li><b>Мгновенная отмена (Undo):</b> после списания платежа или закрытия долга на 8 секунд появляется всплывающая плашка «Отменить», позволяющая вернуть долг в один клик.</li>
+                  <li><b>Восстановление закрытых долгов в Mini App:</b> во вкладке «Погашенные» добавлена кнопка «Вернуть в активные».</li>
+                  <li><b>Быстрые чипы в шторке платежа:</b> предвыбор сумм (+500 ₽, +1 000 ₽, 50%, 100%) для быстрого списания нужной части долга.</li>
+                </ul>
+              </div>
+              <div class="release-group release-group-change">
+                <h4 class="group-title">Изменения</h4>
+                <ul class="release-list">
+                  <li><b>Полный редизайн интерфейса Mini App:</b> единая сводка баланса («Мне должны» / «Я должен»), нативные фильтр-чипы направлений, сегментированные вкладки со счётчиками, аккуратные аватары и скрытие внутренних технических идентификаторов базы.</li>
+                  <li><b>Защита от случайного ввода персональных данных:</b> бот и приложение предупреждают и отклоняют ввод полных ФИО, телефонных номеров и паспортных данных в именах контактов для безопасности ваших записей.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </li>
         <li class="timeline-item" id="v0-9-1">
           <div class="timeline-dot" aria-hidden="true"></div>
           <article class="timeline-card">
             <div class="timeline-top">
               <h3 class="release-heading">
-                <a class="ver latest" href="#v0-9-1" title="Ссылка на это обновление">v0.9.1</a>
+                <a class="ver" href="#v0-9-1" title="Ссылка на это обновление">v0.9.1</a>
               </h3>
               <time class="date" datetime="2026-10-12">12.10.2026</time>
-              <span class="tag">Последнее</span>
             </div>
             <p class="release-title">Направления и дедлайны в приложении, нативные кнопки Telegram</p>
             <div class="release-groups">
@@ -378,6 +409,14 @@
             </div>
           </article>
         </li>
+        <li class="timeline-archive">
+          <details class="timeline-details">
+            <summary class="timeline-summary">
+              <span class="timeline-summary-icon" aria-hidden="true">▾</span>
+              <span class="timeline-summary-text">Показать историю всех версий</span>
+              <span class="timeline-summary-badge">ещё 13 обновлений</span>
+            </summary>
+            <ol class="timeline-older" aria-label="Предыдущие версии">
         <li class="timeline-item" id="v0-9">
           <div class="timeline-dot" aria-hidden="true"></div>
           <article class="timeline-card">
@@ -416,14 +455,6 @@
             </div>
           </article>
         </li>
-        <li class="timeline-archive">
-          <details class="timeline-details">
-            <summary class="timeline-summary">
-              <span class="timeline-summary-icon" aria-hidden="true">▾</span>
-              <span class="timeline-summary-text">Показать историю всех версий</span>
-              <span class="timeline-summary-badge">ещё 12 обновлений</span>
-            </summary>
-            <ol class="timeline-older" aria-label="Предыдущие версии">
         <li class="timeline-item" id="v0-8">
           <div class="timeline-dot" aria-hidden="true"></div>
           <article class="timeline-card">
@@ -823,7 +854,7 @@
     <footer>
       <p>Сделано с ♥ для пользователей <a href="https://t.me/debts_newbot" target="_blank" rel="noopener noreferrer">@debts_newbot</a> · <a href="https://yoomoney.ru/to/410011977124660" target="_blank" rel="noopener noreferrer">Поддержать проект</a></p>
       <p><a href="terms.html">Пользовательское соглашение</a> · <a href="privacy.html">Политика конфиденциальности</a> · <a href="feed.xml">RSS-лента обновлений</a></p>
-      <p>Обновлено <!-- build:updated:start --><time id="last-updated" datetime="2026-10-12">12.10.2026</time><!-- build:updated:end --></p>
+      <p>Обновлено <!-- build:updated:start --><time id="last-updated" datetime="2026-10-13">13.10.2026</time><!-- build:updated:end --></p>
     </footer>
   </div>
 </body>

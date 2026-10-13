@@ -91,11 +91,11 @@ function formatRfc822(iso) {
   return `${weekday}, ${String(d).padStart(2, "0")} ${MONTHS[m - 1]} ${y} 00:00:00 +0300`;
 }
 
-/** '0.7a' -> { base: [0, 7], suffix: 'a' } */
+/** '0.7a' -> { base: [0, 7, 0], suffix: 'a' }, '0.9.2' -> { base: [0, 9, 2], suffix: '' } */
 function parseVersion(version) {
-  const match = /^(\d+)\.(\d+)([a-z]*)$/i.exec(version);
+  const match = /^(\d+)\.(\d+)(?:\.(\d+))?([a-z]*)$/i.exec(version);
   if (!match) throw new Error(`Некорректная версия: ${version}`);
-  return { base: [Number(match[1]), Number(match[2])], suffix: match[3].toLowerCase() };
+  return { base: [Number(match[1]), Number(match[2]), Number(match[3] || 0)], suffix: (match[4] || "").toLowerCase() };
 }
 
 function compareVersions(a, b) {
@@ -103,6 +103,7 @@ function compareVersions(a, b) {
   const vb = parseVersion(b);
   if (va.base[0] !== vb.base[0]) return vb.base[0] - va.base[0];
   if (va.base[1] !== vb.base[1]) return vb.base[1] - va.base[1];
+  if (va.base[2] !== vb.base[2]) return vb.base[2] - va.base[2];
   return vb.suffix.localeCompare(va.suffix);
 }
 
