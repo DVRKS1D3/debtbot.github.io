@@ -29,6 +29,7 @@ const F = {
   faq: resolve(ROOT, "faq.json"),
   page: resolve(ROOT, "index.html"),
   privacy: resolve(ROOT, "privacy.html"),
+  terms: resolve(ROOT, "terms.html"),
   feed: resolve(ROOT, "feed.xml"),
   sitemap: resolve(ROOT, "sitemap.xml"),
   robots: resolve(ROOT, "robots.txt"),
@@ -327,6 +328,12 @@ function buildSitemap(site, latestDate) {
     `    <changefreq>yearly</changefreq>`,
     `    <priority>0.3</priority>`,
     `  </url>`,
+    `  <url>`,
+    `    <loc>${escapeXml(site.baseUrl)}terms.html</loc>`,
+    `    <lastmod>${latestDate}</lastmod>`,
+    `    <changefreq>yearly</changefreq>`,
+    `    <priority>0.3</priority>`,
+    `  </url>`,
     `</urlset>`,
     ``,
   ].join("\n");
@@ -435,6 +442,10 @@ function build() {
   // --- privacy.html ---
   const privacyRaw = readFileSync(F.privacy, "utf8");
   checkUrls(privacyRaw, site, "privacy.html");
+
+  // --- terms.html ---
+  const termsRaw = readFileSync(F.terms, "utf8");
+  checkUrls(termsRaw, site, "terms.html");
 
   const outputs = [
     { file: F.page, label: L, content: html },
